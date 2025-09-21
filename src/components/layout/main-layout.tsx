@@ -1,7 +1,5 @@
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
-import { AppSidebar } from "@/components/app-sidebar"
-import { Button } from "@/components/ui/button"
-import { Bell, Search, User } from "lucide-react"
+import { HeaderNav } from "./header-nav"
+import { Languages } from "lucide-react"
 
 interface MainLayoutProps {
   children: React.ReactNode
@@ -9,43 +7,69 @@ interface MainLayoutProps {
 
 export default function MainLayout({ children }: MainLayoutProps) {
   return (
-    <SidebarProvider>
-      <div className="min-h-screen flex w-full bg-gradient-subtle">
-        <AppSidebar />
-        
-        <div className="flex-1 flex flex-col">
-          {/* Header */}
-          <header className="h-16 border-b border-border/60 bg-card/80 backdrop-blur-sm flex items-center justify-between px-6">
-            <div className="flex items-center gap-4">
-              <SidebarTrigger className="p-2 hover:bg-muted/60 rounded-lg transition-smooth" />
-              <div className="flex items-center gap-2 bg-muted/40 px-3 py-2 rounded-lg max-w-md flex-1">
-                <Search className="w-4 h-4 text-muted-foreground" />
-                <input 
-                  type="text" 
-                  placeholder="Search content, translations..." 
-                  className="bg-transparent border-0 outline-none text-sm flex-1"
-                />
+    <div className="min-h-screen bg-background">
+      <HeaderNav />
+      
+      {/* Main Content */}
+      <main className="container mx-auto px-4 py-8">
+        {children}
+      </main>
+      
+      {/* Footer */}
+      <footer className="border-t border-border/60 bg-muted/20 mt-16">
+        <div className="container mx-auto px-4 py-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="space-y-3">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-lg gradient-primary flex items-center justify-center">
+                  <Languages className="w-4 h-4 text-white" />
+                </div>
+                <div>
+                  <h3 className="font-semibold">NCVET</h3>
+                  <p className="text-xs text-muted-foreground">AI Localization</p>
+                </div>
               </div>
+              <p className="text-sm text-muted-foreground">
+                Empowering vocational education through AI-powered multilingual content localization.
+              </p>
             </div>
             
-            <div className="flex items-center gap-3">
-              <Button variant="ghost" size="sm" className="relative">
-                <Bell className="w-4 h-4" />
-                <span className="absolute -top-1 -right-1 w-2 h-2 bg-accent rounded-full"></span>
-              </Button>
-              <Button variant="ghost" size="sm" className="flex items-center gap-2">
-                <User className="w-4 h-4" />
-                <span className="text-sm font-medium">Admin User</span>
-              </Button>
+            <div className="space-y-3">
+              <h4 className="font-semibold text-sm">Platform</h4>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li><a href="/translate" className="hover:text-foreground transition-smooth">Translation Hub</a></li>
+                <li><a href="/content" className="hover:text-foreground transition-smooth">Content Library</a></li>
+                <li><a href="/analytics" className="hover:text-foreground transition-smooth">Analytics</a></li>
+              </ul>
             </div>
-          </header>
-
-          {/* Main Content */}
-          <main className="flex-1 p-6 overflow-auto">
-            {children}
-          </main>
+            
+            <div className="space-y-3">
+              <h4 className="font-semibold text-sm">Support</h4>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li><a href="#" className="hover:text-foreground transition-smooth">Documentation</a></li>
+                <li><a href="#" className="hover:text-foreground transition-smooth">API Reference</a></li>
+                <li><a href="#" className="hover:text-foreground transition-smooth">Help Center</a></li>
+              </ul>
+            </div>
+            
+            <div className="space-y-3">
+              <h4 className="font-semibold text-sm">Organization</h4>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li><a href="#" className="hover:text-foreground transition-smooth">About NCVET</a></li>
+                <li><a href="#" className="hover:text-foreground transition-smooth">Contact Us</a></li>
+                <li><a href="#" className="hover:text-foreground transition-smooth">Privacy Policy</a></li>
+              </ul>
+            </div>
+          </div>
+          
+          <hr className="my-6 border-border/60" />
+          
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
+            <p>&copy; 2024 National Council for Vocational Education and Training. All rights reserved.</p>
+            <p>Supporting 22+ Indian languages with cultural adaptation</p>
+          </div>
         </div>
-      </div>
-    </SidebarProvider>
+      </footer>
+    </div>
   )
 }

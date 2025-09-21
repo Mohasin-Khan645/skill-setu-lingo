@@ -127,7 +127,7 @@ const Dashboard = () => {
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {stats.map((stat, index) => (
-          <Card key={index} className="hover:shadow-elegant transition-spring">
+          <Card key={index} className="professional-card hover:shadow-elegant transition-spring">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium text-muted-foreground">
                 {stat.title}
@@ -136,7 +136,7 @@ const Dashboard = () => {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{stat.value}</div>
-              <Badge variant="secondary" className="text-xs mt-1">
+              <Badge variant="secondary" className="text-xs mt-1 shadow-sm">
                 <TrendingUp className="w-3 h-3 mr-1" />
                 {stat.change}
               </Badge>
@@ -147,7 +147,7 @@ const Dashboard = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Recent Activity */}
-        <Card className="lg:col-span-2">
+        <Card className="professional-card lg:col-span-2">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <BarChart3 className="w-5 h-5" />
@@ -177,7 +177,7 @@ const Dashboard = () => {
         </Card>
 
         {/* Language Progress */}
-        <Card>
+        <Card className="professional-card">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Languages className="w-5 h-5" />

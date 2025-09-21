@@ -77,14 +77,14 @@ const Home = () => {
 
         <div className="flex flex-wrap gap-4 justify-center">
           <Link to="/translate">
-            <Button variant="hero" size="lg" className="animate-float">
+            <Button variant="hero" size="lg" className="animate-float-gentle shadow-elegant">
               Start Translation
               <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
           </Link>
           
           <Link to="/dashboard">
-            <Button variant="outline" size="lg" className="border-2 hover:bg-muted/60 transition-smooth">
+            <Button variant="outline" size="lg" className="border-2 hover:shadow-card transition-smooth">
               View Dashboard
               <TrendingUp className="w-5 h-5 ml-2" />
             </Button>
@@ -93,15 +93,15 @@ const Home = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <section className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {contentTypes.map((type, index) => (
-          <Card key={index} className="text-center hover:shadow-elegant transition-spring">
-            <CardContent className="pt-6">
-              <div className="w-16 h-16 rounded-full gradient-accent flex items-center justify-center mx-auto mb-4">
+          <Card key={index} className="professional-card text-center hover:shadow-elegant transition-spring animate-slide-in-up" style={{ animationDelay: `${index * 0.1}s` }}>
+            <CardContent className="pt-8 pb-6">
+              <div className="w-16 h-16 rounded-xl gradient-accent flex items-center justify-center mx-auto mb-6 shadow-accent">
                 <type.icon className="w-8 h-8 text-white" />
               </div>
-              <h3 className="font-semibold text-lg mb-2">{type.title}</h3>
-              <p className="text-2xl font-bold text-primary">{type.count}</p>
+              <h3 className="font-semibold text-xl mb-3">{type.title}</h3>
+              <p className="text-3xl font-bold text-primary mb-2">{type.count}</p>
               <p className="text-sm text-muted-foreground">Ready for localization</p>
             </CardContent>
           </Card>
@@ -119,15 +119,15 @@ const Home = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {features.map((feature, index) => (
-            <Card key={index} className="hover:shadow-elegant transition-spring">
-              <CardHeader>
+            <Card key={index} className="professional-card hover:shadow-elegant transition-spring group">
+              <CardHeader className="pb-4">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-lg gradient-primary flex items-center justify-center">
-                    <feature.icon className="w-6 h-6 text-white" />
+                  <div className="w-14 h-14 rounded-xl gradient-primary flex items-center justify-center shadow-card group-hover:shadow-elegant transition-smooth">
+                    <feature.icon className="w-7 h-7 text-white" />
                   </div>
-                  <div>
+                  <div className="space-y-2">
                     <CardTitle className="text-xl">{feature.title}</CardTitle>
-                    <CardDescription className="text-base mt-2">
+                    <CardDescription className="text-base leading-relaxed">
                       {feature.description}
                     </CardDescription>
                   </div>
@@ -147,14 +147,14 @@ const Home = () => {
           </p>
         </div>
 
-        <Card>
+        <Card className="professional-card">
           <CardContent className="p-8">
             <div className="flex flex-wrap gap-3">
               {supportedLanguages.map((language, index) => (
                 <Badge 
                   key={index} 
                   variant="secondary" 
-                  className="text-sm px-3 py-1 hover:bg-primary hover:text-primary-foreground transition-smooth cursor-pointer"
+                  className="text-sm px-4 py-2 hover:bg-primary hover:text-primary-foreground transition-smooth cursor-pointer shadow-sm hover:shadow-card"
                 >
                   {language}
                 </Badge>
@@ -165,15 +165,15 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="text-center py-16 gradient-subtle rounded-2xl">
-        <div className="space-y-6 max-w-2xl mx-auto">
+      <section className="text-center py-20 gradient-subtle rounded-2xl shadow-card">
+        <div className="space-y-8 max-w-3xl mx-auto px-8">
           <h2 className="text-4xl font-bold">Ready to Transform Education?</h2>
-          <p className="text-xl text-muted-foreground">
+          <p className="text-xl text-muted-foreground leading-relaxed">
             Join the revolution in making vocational training accessible to every learner in India.
           </p>
-          <div className="flex gap-4 justify-center">
+          <div className="flex gap-6 justify-center">
             <Link to="/translate">
-              <Button variant="success" size="lg" className="shadow-accent">
+              <Button variant="success" size="xl" className="shadow-elegant hover:shadow-accent animate-pulse-professional">
                 Get Started Today
                 <CheckCircle className="w-5 h-5 ml-2" />
               </Button>

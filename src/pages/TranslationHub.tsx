@@ -133,13 +133,13 @@ const TranslationHub = () => {
       </div>
 
       {/* Language Selector */}
-      <Card>
+      <Card className="professional-card">
         <CardContent className="p-6">
           <div className="flex flex-col md:flex-row items-center gap-4">
             <div className="flex-1 space-y-2">
               <label className="text-sm font-medium">Source Language</label>
               <Select value={sourceLang} onValueChange={setSourceLang}>
-                <SelectTrigger>
+                <SelectTrigger className="h-12">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -159,15 +159,15 @@ const TranslationHub = () => {
               variant="outline" 
               size="icon" 
               onClick={handleSwapLanguages}
-              className="mt-6 hover:bg-muted/60 transition-smooth"
+              className="mt-6 h-12 w-12 hover:shadow-card transition-smooth"
             >
-              <ArrowRightLeft className="w-4 h-4" />
+              <ArrowRightLeft className="w-5 h-5" />
             </Button>
 
             <div className="flex-1 space-y-2">
               <label className="text-sm font-medium">Target Language</label>
               <Select value={targetLang} onValueChange={setTargetLang}>
-                <SelectTrigger>
+                <SelectTrigger className="h-12">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
