@@ -1,6 +1,12 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 import { 
   Languages, 
   Home, 
@@ -16,15 +22,39 @@ import {
   Bell,
   Search,
   Menu,
-  X
+  X,
+  LogOut,
+  ChevronDown
 } from "lucide-react"
-import { NavLink, useLocation } from "react-router-dom"
+import { NavLink, useLocation, useNavigate, Link } from "react-router-dom"
 import { cn } from "@/lib/utils"
+import { useAuth } from "@/hooks/use-auth"
+import { useToast } from "@/hooks/use-toast"
 
 export function HeaderNav() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const location = useLocation()
   const currentPath = location.pathname
+  const { user, signOut } = useAuth()
+  const { toast } = useToast()
+  const navigate = useNavigate()
+
+  const handleSignOut = async () => {
+    const { error } = await signOut()
+    if (error) {
+      toast({
+        title: "Error",
+        description: "Failed to sign out. Please try again.",
+        variant: "destructive",
+      })
+    } else {
+      toast({
+        title: "Signed Out",
+        description: "You have been successfully signed out.",
+      })
+      navigate('/')
+    }
+  }
 
   const mainItems = [
     { title: "Home", url: "/", icon: Home },
@@ -93,27 +123,42 @@ export function HeaderNav() {
               <span className="absolute -top-1 -right-1 w-2 h-2 bg-accent rounded-full"></span>
             </Button>
 
-            {/* Profile */}
-            <NavLink to="/profile" className={cn(
-              "flex items-center gap-2 px-3 py-2 rounded-lg transition-smooth",
-              isActive("/profile") 
-                ? "bg-primary text-primary-foreground" 
-                : "hover:bg-muted/60"
-            )}>
-              <User className="w-4 h-4" />
-              <span className="hidden sm:inline text-sm font-medium">Profile</span>
-            </NavLink>
-
-            {/* Settings */}
-            <NavLink to="/settings" className={cn(
-              "flex items-center gap-2 px-3 py-2 rounded-lg transition-smooth",
-              isActive("/settings") 
-                ? "bg-primary text-primary-foreground" 
-                : "hover:bg-muted/60"
-            )}>
-              <Settings className="w-4 h-4" />
-              <span className="hidden sm:inline text-sm font-medium">Settings</span>
-            </NavLink>
+            {/* User Menu */}
+            {user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="sm" className="flex items-center gap-2">
+                    <User className="w-4 h-4" />
+                    <span className="hidden sm:inline text-sm">
+                      {user.user_metadata?.display_name || 'Account'}
+                    </span>
+                    <ChevronDown className="w-3 h-3" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-48">
+                  <DropdownMenuItem asChild>
+                    <NavLink to="/profile" className="flex items-center">
+                      <User className="mr-2 h-4 w-4" />
+                      Profile
+                    </NavLink>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <NavLink to="/settings" className="flex items-center">
+                      <Settings className="mr-2 h-4 w-4" />
+                      Settings
+                    </NavLink>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={handleSignOut}>
+                    <LogOut className="mr-2 h-4 w-4" />
+                    Sign Out
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Button asChild variant="default" size="sm">
+                <Link to="/auth">Sign In</Link>
+              </Button>
+            )}
 
             {/* Mobile Menu Toggle */}
             <Button 

@@ -76,16 +76,16 @@ const Home = () => {
         </div>
 
         <div className="flex flex-wrap gap-4 justify-center">
-          <Link to="/translate">
+          <Link to="/auth">
             <Button variant="hero" size="lg" className="animate-float-gentle shadow-elegant">
-              Start Translation
+              Get Started
               <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
           </Link>
           
-          <Link to="/dashboard">
+          <Link to="/auth">
             <Button variant="outline" size="lg" className="border-2 hover:shadow-card transition-smooth">
-              View Dashboard
+              Sign In
               <TrendingUp className="w-5 h-5 ml-2" />
             </Button>
           </Link>
@@ -172,7 +172,7 @@ const Home = () => {
             Join the revolution in making vocational training accessible to every learner in India.
           </p>
           <div className="flex gap-6 justify-center">
-            <Link to="/translate">
+            <Link to="/auth">
               <Button variant="success" size="xl" className="shadow-elegant hover:shadow-accent animate-pulse-professional">
                 Get Started Today
                 <CheckCircle className="w-5 h-5 ml-2" />
