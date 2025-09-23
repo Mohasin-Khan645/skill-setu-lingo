@@ -15,6 +15,7 @@ import Analytics from "./pages/Analytics";
 import Profile from "./pages/Profile";
 import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
+// import UsersPage from "./pages/UserPage"; // Import the UsersPage component
 
 const queryClient = new QueryClient();
 
